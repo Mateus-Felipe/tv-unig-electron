@@ -5,6 +5,7 @@
   "version": "0.2.7",
   "private": true,
   "dependencies": {
+    "axios": "^1.6.5",
     "cross-env": "6.0.2",
     "electron-is-dev": "1.1.0",
     "electron-log": "^3.0.8",
@@ -28,14 +29,15 @@
   "main": "public/electron.js",
   "homepage": "./",
   "scripts": {
-    "react-start": "react-scripts start",
-    "react-build": "react-scripts build",
-    "react-test": "react-scripts test --env=jsdom",
-    "react-eject": "react-scripts eject",
-    "electron-build": "electron-builder",
-    "release": "yarn react-build && electron-builder --publish=always",
-    "build": "yarn react-build && yarn electron-build",
-    "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
+    "react-start": "set \"NODE_OPTIONS=--openssl-legacy-provider\" && react-scripts start",
+    "react-build": "set \"NODE_OPTIONS=--openssl-legacy-provider\" && react-scripts build",
+    "react-test": "set \"NODE_OPTIONS=--openssl-legacy-provider\" && react-scripts test --env=jsdom",
+    "react-eject": "set \"NODE_OPTIONS=--openssl-legacy-provider\" && react-scripts eject",
+    "electron-build": "set \"NODE_OPTIONS=--openssl-legacy-provider\" && electron-builder",
+    "release": "set \"NODE_OPTIONS=--openssl-legacy-provider\" && yarn react-build && electron-builder --publish=always",
+    "build": "set \"NODE_OPTIONS=--openssl-legacy-provider\" && yarn react-build && yarn electron-build",
+    "start": "set \"NODE_OPTIONS=--openssl-legacy-provider\" && concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\"",
+    "start-e": "set \"NODE_OPTIONS=--openssl-legacy-provider\" && electron ."
   },
   "browserslist": {
     "production": [
